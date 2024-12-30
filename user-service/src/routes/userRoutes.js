@@ -4,8 +4,13 @@ const { registerUser, loginUser, updateUsername } = require('../controllers/user
 const router = express.Router();
 const { authMiddleware } = require('../middleware/authMiddleware'); // Assuming you have an auth middleware
 
+// User registration
 router.post('/register', registerUser);
+
+// User login
 router.post('/login', loginUser);
-router.put('/', authMiddleware, updateUsername); // New endpoint
+
+// Update username
+router.put('/username', authMiddleware, updateUsername); // More descriptive endpoint
 
 module.exports = router;

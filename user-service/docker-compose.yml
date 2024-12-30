@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: .
+    ports:
+      - "5000:5000" # Map host port 5000 to container port 5000
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/userdb # Connection string for MongoDB
+      - JWT_SECRET=your_jwt_secret # Make sure to set this to a secure value
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest # Use the latest MongoDB image
+    ports:
+      - "27017:27017" # Map host port 27017 to container port 27017
+    volumes:
+      - mongo_data:/data/db # Persist MongoDB data
+
+volumes:
+  mongo_data:
