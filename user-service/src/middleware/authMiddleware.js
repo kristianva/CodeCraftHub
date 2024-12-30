@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 
+// Middleware to authenticate users based on JWT
 exports.authMiddleware = (req, res, next) => {
     const token = req.headers['authorization']?.split(' ')[1]; // Bearer token format
 
@@ -15,5 +16,3 @@ exports.authMiddleware = (req, res, next) => {
         next();
     });
 };
-
-//curl -X PUT http://localhost:3000/api/users -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NzJkYTk2YWM3NjdkOTNmN2RlZTIzNCIsImlhdCI6MTczNTU4MTM2MCwiZXhwIjoxNzM1NTg0OTYwfQ.Fl0sYhttkloOsqS0kSaRuInKnGOX3uzKLnHmyjGmI2k" -H "Content-Type: application/json" -d '{"newUsername": "newTestUser"}'
